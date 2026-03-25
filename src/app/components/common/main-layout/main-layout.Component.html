@@ -1,0 +1,24 @@
+<!-- GLOBAL-LOADER -->
+<div id="global-loader">
+  <img alt="Loader" class="loader-img" src="../assets/images/loader.svg" />
+</div>
+<!-- /GLOBAL-LOADER -->
+
+<!-- PAGE -->
+<div class="page">
+  <div class="page-main">
+    <!--app-content open-->
+
+    <app-top-nav-bar></app-top-nav-bar>
+    <app-main-side-menu></app-main-side-menu>
+    <div class="main-content app-content mt-5  " style="padding-top: 5rem;">
+      <div class="side-app">
+        <div class="main-container container-fluid">
+          <!-- <app-main-page></app-main-page> -->
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

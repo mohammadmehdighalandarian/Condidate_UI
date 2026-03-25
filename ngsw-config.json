@@ -1,0 +1,68 @@
+{
+  "$schema": "./node_modules/@angular/service-worker/config/schema.json",
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "resources": {
+        "files": [
+          "/favicon.ico",
+          "/index.html",
+          "/manifest.webmanifest",
+          "/*.css",
+          "/*.js"
+        ]
+      }
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": [
+          "/assets/**",
+          "/*.(svg|cur|jpg|jpeg|png|apng|webp|avif|gif|otf|ttf|woff|woff2)"
+        ]
+      }
+    }
+  ],
+  "dataGroups": [
+      {
+        "name": "GetAllProvinces",
+        "urls": [
+        "https://elecbeta.moi.ir:8089/api/StaticData/GetAllProvinces"
+        ],
+        "cacheConfig": {
+        "maxSize": 10,
+        "maxAge": "1d",
+        "timeout": "5s",
+        "strategy": "freshness"
+        }
+      },
+      {
+        "name": "GetZones",
+        "urls": [
+        "https://elecbeta.moi.ir:8089/api/StaticData/GetZones?(.*)"
+        ],
+        "cacheConfig": {
+        "maxSize": 10,
+        "maxAge": "1d",
+        "timeout": "5s",
+        "strategy":"freshness"
+        }
+      },
+      {
+        "name": "googleapis",
+        "urls": [
+        "https://fonts.googleapis.com/css?family=Inter:400,500,700&amp;display=swap"
+        ],
+        "cacheConfig": {
+        "maxSize": 10,
+        "maxAge": "1d",
+        "timeout": "5s",
+        "strategy":"freshness"
+        }
+      }
+    ]
+}

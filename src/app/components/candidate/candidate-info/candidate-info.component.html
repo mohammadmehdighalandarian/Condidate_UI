@@ -1,0 +1,159 @@
+<div class="candidate-info-page" dir="rtl">
+  <div class="page-card">
+    <div class="page-header">
+      <div class="title">اطلاعات نامزد</div>
+    </div>
+
+    <div class="page-body">
+      <button type="button" class="back-btn" (click)="goBack()">
+        <i class="fa fa-arrow-right"></i>
+      </button>
+
+      <div class="tabs-row">
+        <button
+          type="button"
+          class="tab-btn"
+          [class.active]="activeTab === 'profile'"
+          (click)="setTab('profile')">
+          مشخصات
+        </button>
+
+        <button
+          type="button"
+          class="tab-btn"
+          [class.active]="activeTab === 'biography'"
+          (click)="setTab('biography')">
+          زندگینامه
+        </button>
+
+        <button
+          type="button"
+          class="tab-btn"
+          [class.active]="activeTab === 'social'"
+          (click)="setTab('social')">
+          شبکه های اجتماعی
+        </button>
+
+        <button
+          type="button"
+          class="tab-btn"
+          [class.active]="activeTab === 'websites'"
+          (click)="setTab('websites')">
+          آدرس های اینترنتی
+        </button>
+      </div>
+
+      <div class="content-box" *ngIf="!loading && candidateInfo">
+        <!-- profile -->
+        <ng-container *ngIf="activeTab === 'profile'">
+          <div class="profile-wrapper">
+            <div class="profile-info">
+              <div class="info-row">
+                <span class="label">نام و نام خانوادگی</span>
+                <span class="value">{{ candidateInfo.fullName || '-' }}</span>
+              </div>
+
+              <div class="info-row">
+                <span class="label">استان</span>
+                <span class="value">{{ candidateInfo.provinceTitle || '-' }}</span>
+              </div>
+
+              <div class="info-row">
+                <span class="label">حوزه انتخابی</span>
+                <span class="value">{{ candidateInfo.zoneTitle || '-' }}</span>
+              </div>
+
+              <div class="info-row">
+                <span class="label">نام دانشگاه / موسسه آموزشی</span>
+                <span class="value">{{ candidateInfo.universityTitle || '-' }}</span>
+              </div>
+
+              <div class="info-row">
+                <span class="label">مقطع تحصیلی</span>
+                <span class="value">{{ candidateInfo.educationLevelTitle || '-' }}</span>
+              </div>
+
+              <div class="info-row">
+                <span class="label">رشته تحصیلی</span>
+                <span class="value">{{ candidateInfo.fieldTendencyTitle || '-' }}</span>
+              </div>
+
+              <div class="info-row">
+                <span class="label">نام موسسه / سازمان</span>
+                <span class="value">{{ candidateInfo.jobOrganizationTitle || '-' }}</span>
+              </div>
+
+              <div class="info-row">
+                <span class="label">عنوان شغلی</span>
+                <span class="value">{{ candidateInfo.jobTitle || '-' }}</span>
+              </div>
+            </div>
+
+            <div class="profile-image">
+              <img
+                [src]="candidateInfo.imageUrl || 'assets/images/default-user.png'"
+                alt="candidate" />
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- biography -->
+        <ng-container *ngIf="activeTab === 'biography'">
+          <div *ngIf="hasBiography; else biographyEmpty" class="biography-text">
+            {{ candidateInfo.biography }}
+          </div>
+
+          <ng-template #biographyEmpty>
+            <div class="empty-biography">
+              اطلاعاتی توسط نامزد ثبت نشده است
+            </div>
+          </ng-template>
+        </ng-container>
+
+        <!-- social -->
+        <ng-container *ngIf="activeTab === 'social'">
+          <table class="simple-table">
+            <thead>
+              <tr>
+                <th>نام شبکه اجتماعی</th>
+                <th>آدرس</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of candidateInfo.socialMedias">
+                <td>{{ item.socialMediaTitle }}</td>
+                <td>{{ item.url }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </ng-container>
+
+        <!-- websites -->
+        <ng-container *ngIf="activeTab === 'websites'">
+          <table class="simple-table">
+            <thead>
+              <tr>
+                <th>عنوان درگاه اینترنتی</th>
+                <th>آدرس</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of candidateInfo.webSites">
+                <td>{{ item.title }}</td>
+                <td>{{ item.url }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </ng-container>
+      </div>
+
+      <div *ngIf="loading" class="loading-box">
+        در حال دریافت اطلاعات...
+      </div>
+
+      <div *ngIf="errorText" class="error-box">
+        {{ errorText }}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+
+        
+        
+<div *ngFor="let row of cardRows" class="row" style="margin-top: 10px;">
+    <div class="col-xl-4 col-md-4" *ngFor="let item of row">
+        <div class="card text-center">
+            <div class="card-body">
+                <h4>{{item.mainPageName}}</h4>
+                <p class="card-text" style="white-space: pre-line;">{{item.mainPageDesc}}</p>
+                <button class="btn btn-primary" (click)="navigateTo(item.menuUrl)">{{item.mainPageActionName}}</button>
+
+            </div>
+        </div>
+    </div>
+</div>  
+

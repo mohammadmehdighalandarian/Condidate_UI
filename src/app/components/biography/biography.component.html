@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <div class="row p-0 m-0 justify-content-center">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">زندگینامه</h4>
+          <div class="row">
+            <div class="col-12">
+              <div id="summernote"></div>
+            </div>
+            <div class="col-12">
+              <span [style]="maxStyle" id="maxContentPost"></span>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer text-end">
+          
+          <button class="btn btn-primary w-10 p-2" (click)="submitBiography()" type="button"> ثبت <i class="fa fa-check"></i></button>
+          <button  class="btn btn-danger w-10 p-2 ms-2" (click)="cancelEditing()" type="button">انصراف<i class="fa fa-times"></i></button>
+        
+        </div>
+      </div>
+    </div>
+  </div>
+

@@ -1,0 +1,9 @@
+<router-outlet></router-outlet>
+<ngx-loading [show]="loading.showProgressbar" [template]="customLoadingTemplate"></ngx-loading>
+<!-- <span *ngIf="loading.showProgressbar" class="ngx-text animate__animated animate__backInRight">
+    {{loading.text}}</span> -->
+<ng-template #customLoadingTemplate>
+    <div class="page-loading-overlay">
+      <span class="spinner-border text-primary page-spinner" role="status" aria-hidden="true"></span>
+    </div>
+</ng-template>
