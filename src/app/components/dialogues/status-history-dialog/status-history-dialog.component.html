@@ -1,0 +1,37 @@
+<div class="custom-dialog-container" dir="rtl">
+  <h2 class="dialog-title">تاریخچه تغییر وضعیت</h2>
+
+  <div class="table-wrapper">
+    <table class="history-table">
+      <thead>
+        <tr>
+          <th>تاریخ وضعیت</th>
+          <th>وضعیت</th>
+          <th>کاربر</th>
+          <th>رتبه</th>
+          <th>توضیحات</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let item of data.items">
+          <td>{{ item.changeDateTime }}</td>
+          <td>{{ item.statusTitle || "-" }}</td>
+          <td>{{ getChangedByUserTitle(item.changedByUser) }}</td>
+          <td>{{ item.ranking || "-" }}</td>
+          <td>{{ item.description || "-" }}</td>
+        </tr>
+
+        <tr *ngIf="!data.items || data.items.length === 0">
+          <td colspan="4">موردی برای نمایش وجود ندارد</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="dialog-actions">
+    <button (click)="close()" class="btn btn-primary w-10 p-2">
+      متوجه شدم
+    </button>
+  </div>
+</div>

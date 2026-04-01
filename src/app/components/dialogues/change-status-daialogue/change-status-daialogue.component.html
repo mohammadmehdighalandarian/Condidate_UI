@@ -1,0 +1,53 @@
+<div class="custom-dialog-container" dir="rtl">
+    <h3 class="dialog-title">
+        <strong>تغییر وضعیت دعوت‌نامه</strong>
+    </h3>
+    <!-- <div class="fill-remaining-space"></div>
+    <a class="modal-close" [mat-dialog-close]>
+        <i aria-label="Close" class="zmdi zmdi-close" style="font-size: 25px;line-height: 60px;"></i>
+    </a> -->
+    <hr style="background-color: black;padding: 1px;">
+    <form (ngSubmit)="f.form.valid && changeStatus()" #f="ngForm">
+        <!-- <mat-dialog-content class="dialog-content"> -->
+            <div class="row form-group">
+                <!-- <div class="col-6 offset-3" dir="rtl"> -->
+                    <mat-form-field appearance="outline">
+                        <mat-label>انتخاب وضعیت</mat-label>
+                        <mat-select [(ngModel)]="model.status" name="status" required>
+                            <mat-option *ngFor="let item of statusList" [value]="item.value">
+                                {{ item.name }}
+                             </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="f.submitted">
+                            لطفا یک وضعیت انتخاب کنید.
+                        </mat-error>
+                    </mat-form-field>
+                <!-- </div> -->
+            </div>
+            <div class="row form-group">
+                <!-- <div class="col-6 offset-3" dir="rtl"> -->
+                    <mat-form-field appearance="outline">
+                        <mat-label>توضیحات</mat-label>
+                        <textarea matInput placeholder="توضیحات" name="descrition" cols="2"
+                            [(ngModel)]="model.description" trim="blur" maxlength="2000"
+                            style="height: 75px !important" [required]="model.status == InvitationStatus.Rejected">
+                        </textarea>
+                        <mat-error *ngIf="f.submitted">
+                           وارد کردن توضیحات الزامی است.
+                         </mat-error>
+                    </mat-form-field>
+                <!-- </div> -->
+            </div>
+        <!-- </mat-dialog-content> -->
+        <mat-dialog-actions align="end">
+            <div class="col-md-12" dir="rtl">
+                <button type="submit" class="btn btn-primary w-10 p-2">
+                     ثبت <i class="fa fa-check"></i>
+                </button>
+                <button type="button" class="btn btn-danger w-10 p-2 ms-2" mat-dialog-close>
+                     انصراف <i class="fa fa-times"></i>
+                </button>
+            </div>
+        </mat-dialog-actions>
+    </form>
+</div>

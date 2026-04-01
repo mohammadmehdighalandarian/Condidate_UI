@@ -1,0 +1,127 @@
+<div class="publication-page" dir="rtl">
+    <div class="publication-card">
+        <div class="publication-card-body">
+            <div class="page-title-row">
+                <h5 class="page-title">لیست درخواست‌ها</h5>
+            </div>
+            <div class="filters-row">
+                <div class="filters-group">
+                    <button mat-stroked-button matBadgeColor="primary" style="margin-top: 2%;"
+                        class="btn btn-primary excel-btn" (click)="downloadExcelFile()">
+                        <span class="excel-btn-text">دریافت خروجی اکسل</span>
+                        <mat-icon class="excel-btn-icon" style="color: #0095da">download</mat-icon>
+                    </button>
+                </div>
+            </div>
+
+            <div class="row" style="direction: ltr; margin-top: 10px;">
+                <div class="col-md-3" style="direction: rtl;">
+                    <mat-form-field appearance="outline">
+                        <mat-label>جستجو</mat-label>
+                        <input matInput (keyup)="applyFilter($event)">
+                        <mat-icon matSuffix>search</mat-icon>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <table mat-table [dataSource]="dataSource" class="custom-table" matSort matSortDisableClear>
+                    <ng-container matColumnDef="sendDate">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header
+                            sortActionDescription="مرتب‌ سازی بر اساس تاریخ ثبت درخواست">
+                            زمان ثبت درخواست
+                        </th>
+                        <td mat-cell *matCellDef="let publication" class="date-time-ltr">
+                            {{ publication.sendDate }}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="partyCode">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header
+                            sortActionDescription="مرتب‌سازی بر اساس کد حزب">
+                            کد حزب
+                        </th>
+                        <td mat-cell *matCellDef="let publication">
+                            {{ publication.partyCode }}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="partyFullName">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header
+                            sortActionDescription="مرتب‌سازی بر اساس نام حزب">
+                            نام حزب
+                        </th>
+                        <td mat-cell *matCellDef="let publication">
+                            {{ publication.partyFullName }}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="secretaryFullName">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header
+                            sortActionDescription="مرتب‌سازی بر اساس نام دبیر حزب">
+                            نام دبیر حزب
+                        </th>
+                        <td mat-cell *matCellDef="let publication">
+                            {{ publication.secretaryFullName }}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="province">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header
+                            sortActionDescription="مرتب‌سازی بر اساس استان">
+                            استان
+                        </th>
+                        <td mat-cell *matCellDef="let publication">
+                            {{ publication.province }}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="zoneTitle">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header
+                            sortActionDescription="مرتب‌سازی بر اساس حوزه انتخابی">
+                            حوزه انتخابی
+                        </th>
+                        <td mat-cell *matCellDef="let publication">
+                            {{ publication.zoneTitle }}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="statusTitle">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header
+                            sortActionDescription="مرتب‌سازی بر اساس وضعیت">
+                            وضعیت
+                        </th>
+                        <td mat-cell *matCellDef="let publication">
+                            {{ publication.statusTitle }}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="description">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header
+                            sortActionDescription="مرتب‌سازی بر اساس توضیحات">
+                            توضیحات
+                        </th>
+                        <td mat-cell *matCellDef="let publication">
+                            {{ publication.description }}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef>عملیات</th>
+                        <td mat-cell *matCellDef="let publication">
+                            <button mat-button class="btn btn-sm btn-outline-info"
+                                (click)="openDetailDialog(publication)">
+                                مشاهده جزئیات
+                            </button>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                </table>
+
+                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>

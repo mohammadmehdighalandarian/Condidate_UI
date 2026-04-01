@@ -1,0 +1,41 @@
+.custom-dialog-container {
+  padding: 16px;
+  text-align: center;
+}
+
+.dialog-title {
+  margin: 0 0 16px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #333;
+}
+
+.dialog-text {
+  font-size: 13px;
+  color: #333;
+  margin-bottom: 8px;
+  line-height: 1.8;
+}
+
+.dialog-subtext {
+  font-size: 13px;
+  color: black;
+  margin-bottom: 14px;
+  line-height: 1.8;
+}
+
+.dialog-label {
+  text-align: right;
+  font-size: 13px;
+  margin-bottom: 6px;
+  color: #444;
+}
+
+.btn{
+  min-width: 80px;
+  width:fit-content !important;
+}
+
+mat-form-field{
+  font-size: 13px;
+}

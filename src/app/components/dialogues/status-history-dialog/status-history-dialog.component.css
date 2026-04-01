@@ -1,0 +1,66 @@
+.custom-dialog-container {
+  padding: 16px;
+  text-align: center;
+}
+
+.dialog-title {
+  margin: 0 0 18px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: #333;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  background: transparent;
+}
+
+.history-table thead th {
+  font-size: 14px;
+  font-weight: 700;
+  color: #222;
+  padding: 12px 10px;
+  border-bottom: 2px solid #5f7ff5;
+  white-space: nowrap;
+}
+
+.history-table tbody td {
+  padding: 12px 10px;
+  font-size: 14px;
+  color: #333;
+  white-space: nowrap;
+}
+
+.history-table tbody tr:last-child td {
+  padding-bottom: 14px;
+}
+
+/* only inner vertical lines, no outer left/right lines */
+.history-table th + th,
+.history-table td + td {
+  border-inline-start: 1px solid #5f7ff5;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.dialog-actions button {
+  min-width: 140px;
+  border-radius: 8px;
+}
+
+/* purple primary style */
+.ack-btn.mat-mdc-raised-button:not(:disabled) {
+  background-color: #673ab7 !important;
+  color: #fff !important;
+}

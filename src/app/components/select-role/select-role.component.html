@@ -1,0 +1,28 @@
+<div *ngIf="roles && roles.length > 0;" class="container">
+    <div class="row mb-6 mt-12">
+        <h4>کاربر گرامی برای شما در سامانه بیش از یک نقش وجود دارد، لطفا نقش مورد نظر را جهت ورود به سامانه انتخاب
+            نمایید.</h4>
+    </div>
+    <div class="row" style="display: ruby;">
+        <div class="col-12 col-md-4 mb-4" *ngFor="let role of roles">
+            <div class="card h-100 role-card">
+                <div class="card-body d-flex flex-column">
+                    <p class="card-text">ورود با نقش -
+                        {{ role == 1 ? 'نامزد' :
+                        role == 2 ? 'دبیر حزب' :
+                        role == 3 ? 'نماینده ستاد انتخابات': ''
+                        }}
+                    </p>
+
+                    <button class="btn btn-primary mt-auto" (click)="selectLogin(role)">
+                        ورود
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <ng-template #noRoles>
+    <p>هیچ نقشی برای شما وجود ندارد.</p>
+</ng-template> -->

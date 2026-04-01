@@ -1,0 +1,38 @@
+<div class="custom-dialog-container" dir="rtl">
+  <h3 class="dialog-title"><strong>حذف از لیست</strong></h3>
+  <hr style="background-color: black;padding: 1px;">
+
+  <div class="dialog-text">
+    آیا از حذف نامزد از لیست اطمینان دارید؟
+  </div>
+
+  <div class="dialog-subtext">
+    در صورت تایید توضیحات خود را ثبت نمایید
+  </div>
+
+  <form (ngSubmit)="f.form.valid && submit()" #f="ngForm">
+    <div class="row form-group">
+      <mat-form-field appearance="outline">
+          <mat-label>توضیحات</mat-label>
+          <textarea matInput placeholder="علت حذف دعوت را وارد کنید" name="description" cols="2"
+              [(ngModel)]="description" trim="blur" maxlength="2000"
+              style="height: 75px !important" [required]="status == InvitationStatus.Confirmed">
+          </textarea>
+          <mat-error *ngIf="f.submitted">
+             وارد کردن توضیحات الزامی است.
+           </mat-error>
+      </mat-form-field>
+     </div>
+    <mat-dialog-actions align="end">
+      <div class="col-md-12" dir="rtl">
+          <button type="submit" class="btn btn-primary w-10 p-2">
+               ثبت <i class="fa fa-check"></i>
+          </button>
+          <button type="button" class="btn btn-danger w-10 p-2 ms-2" mat-dialog-close>
+               انصراف <i class="fa fa-times"></i>
+          </button>
+      </div>
+    </mat-dialog-actions>
+  </form>
+  
+</div>

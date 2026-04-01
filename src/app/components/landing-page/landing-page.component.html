@@ -1,0 +1,17 @@
+<div class="landing">
+  <header>
+    <h1>سامانه انتخاب ایران</h1>
+    <h1 *ngIf="logingIn">در حال ورود به سامانه لطفا منتظر بمانید ...</h1>
+  </header>
+  <main>
+    <section>
+      <button
+      *ngIf="!logingIn"
+        class="btn ripple btn-min w-lg mb-3 me-2 btn-primary"
+        (click)="enterApplication()"
+      >
+        ورود به سامانه
+      </button>
+    </section>
+  </main>
+</div>

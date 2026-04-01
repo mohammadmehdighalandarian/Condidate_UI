@@ -1,0 +1,23 @@
+cd E:\Bit.BehsaCorp\CandidateAdminPanel\UI
+E:
+ 
+docker build -t  candidate/admin/panel/ui:v203       -f Dockerfile .
+
+docker save -o "D:\candidate-admin-panel-ui-v203.tar.gz" candidate/admin/panel/ui:v203
+ 
+************************************************local server****************************************
+0) ng build
+1) got to the path that has docker file:
+docker build -t election.single.window.ui -f Dockerfile .
+
+2)
+docker save -o election.single.window.ui.tar.gz election.single.window.ui
+
+3)go to the server (172.18.63.51) and copy the tar.gz file in an address: (/home/develop/ElectionImages/)
+sudo docker stop election.single.window.ui
+sudo docker rm election.single.window.ui
+sudo docker rmi election.single.window.ui
+sudo docker load -i /home/develop/ElectionImages/election.single.window.ui.tar.gz
+sudo docker run -d --name election.single.window.ui -p 5010:8080  --env  API_URL="http://172.18.63.51:5011/api/" --env LOGOUT_URL="https://ssokeshvar.moi.ir/logout" --env API_VER="v1" --env ELECTION_TYPE=2 --restart=always  election.single.window.ui
+
+************************************************local server****************************************

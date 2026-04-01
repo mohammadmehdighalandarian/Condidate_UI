@@ -1,0 +1,143 @@
+<div class="publication-requests-page" dir="rtl">
+  <div class="publication-card">
+    <div class="publication-card-body">
+      <div class="page-title-row">
+        <h5 class="page-title">درخواست‌های انتشار</h5>
+      </div>
+
+      <div class="search-row" style="direction: ltr; margin-top: 10px">
+        <div class="search-col" style="direction: rtl">
+          <mat-form-field appearance="outline" class="search-field">
+            <mat-label>جستجو</mat-label>
+            <input
+              matInput
+              placeholder="جستجو در وضعیت،استان،حوزه"
+              [value]="searchText"
+              (keyup)="applyFilter($event)"
+            />
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+        </div>
+        
+      </div>
+
+      <div class="table-wrapper" [class.loading]="loading">
+        <table
+          mat-table
+          [dataSource]="dataSource"
+          class="custom-table"
+          matSort
+          matSortDisableClear
+        >
+          <ng-container matColumnDef="rowNumber">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
+              mat-sort-header
+              sortActionDescription="مرتب‌سازی بر اساس ردیف"
+            >
+              ردیف
+            </th>
+            <td mat-cell *matCellDef="let item">{{ item.rowNumber }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="requestDate">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
+              mat-sort-header
+              sortActionDescription="مرتب‌سازی بر اساس تاریخ"
+            >
+              تاریخ
+            </th>
+            <td mat-cell *matCellDef="let item">{{ item.requestDate }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="statusTitle">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
+              mat-sort-header
+              sortActionDescription="مرتب‌سازی بر اساس وضعیت"
+            >
+              وضعیت
+            </th>
+            <td mat-cell *matCellDef="let item">{{ item.statusTitle }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="provinceTitle">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
+              mat-sort-header
+              sortActionDescription="مرتب‌سازی بر اساس استان"
+            >
+              استان
+            </th>
+            <td mat-cell *matCellDef="let item">{{ item.provinceTitle }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="electionZoneTitle">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
+              mat-sort-header
+              sortActionDescription="مرتب‌سازی بر اساس حوزه انتخابی"
+            >
+              حوزه انتخابی
+            </th>
+            <td mat-cell *matCellDef="let item">{{ item.electionZoneTitle }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="description">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
+              mat-sort-header
+              sortActionDescription="مرتب‌سازی بر اساس توضیحات"
+            >
+              توضیحات
+            </th>
+            <td mat-cell *matCellDef="let item">
+              <div *ngIf="item.description" class="description-cell">
+                <span *ngIf="item.description.length <= maxCellLength" class="description-text">{{ item.description }}</span>
+                <span  *ngIf="item.description.length > maxCellLength" class="description-text">{{ item.description.slice(0, maxCellLength) }}...</span>
+                <button
+                  *ngIf="item.description.length > maxCellLength "
+                  type="button"
+                  class="show-more-btn"
+                  (click)="openDescriptionDialog(item.description)"
+                >
+                  (مشاهده بیشتر)
+                </button>
+              </div>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>عملیات</th>
+            <td mat-cell *matCellDef="let item">
+              <button
+                mat-stroked-button
+                color="primary"
+                class="download-btn"
+                (click)="downloadCandidates(item)"
+              >
+                دانلود لیست نامزدها
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+
+        <mat-paginator
+          [pageSizeOptions]="[5, 10, 25, 100]"
+          [pageSize]="10"
+          showFirstLastButtons
+        ></mat-paginator>
+      </div>
+    </div>
+  </div>
+</div>
